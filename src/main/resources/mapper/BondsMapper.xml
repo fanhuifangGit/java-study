@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanhf.javastudy.mybatistest.dao.BondsDao">
+
+    <select id="getBondsList" resultType="com.fanhf.javastudy.mybatistest.bean.BondsBean">
+        select * from t_bonds limit 10;
+    </select>
+    <select id="getBondsListById" parameterType="com.fanhf.javastudy.mybatistest.bean.BondsBean" resultType="com.fanhf.javastudy.mybatistest.bean.BondsBean">
+          select * from t_bonds
+        <where>
+            <if test="bondId !=null">
+                bond_id = #{bondId}
+            </if>
+            <if test="bondCode !=null or bondCode!=''">
+               and  bond_code = #{bondCode}
+            </if>
+            <choose>
+                <when test="bondType = 1">
+                    order by   create_time
+                </when>
+                <when test="bondType = 2">
+                    order by   update_time
+                </when>
+                <otherwise>
+
+                </otherwise>
+            </choose>
+           <!-- <if test="bondType ==1">
+                order by   create_time
+            </if>
+            <if test="bondType ==2">
+                order by   update_time
+            </if>-->
+        </where>
+    </select>
+</mapper>
