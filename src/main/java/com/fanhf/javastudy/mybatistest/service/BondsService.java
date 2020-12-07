@@ -49,6 +49,10 @@ public class BondsService {
 
     public void getBondsRedis(String type) {
         switch (Integer.parseInt(type)){
+            case 0:
+                log.info("==================Keys操作==========================");
+                testRedisKeysCommand();
+                break;
             case 1:
                 log.info("==================string操作==========================");
                 testRedisStringCommand();
@@ -73,6 +77,21 @@ public class BondsService {
         }
     }
 
+    /**
+     * redisTemplate;//操作keys
+     */
+    public void testRedisKeysCommand(){
+        log.info("========expire=============={}",redisTemplate.expire("string1",3L, TimeUnit.MILLISECONDS));
+        log.info("========persist============={}",redisTemplate.persist("string1"));
+        log.info("========hasKey=============={}",redisTemplate.hasKey("string1"));
+        log.info("========getExpire==========={}",redisTemplate.getExpire("string1"));
+        log.info("========type================{}",redisTemplate.type("score"));
+        log.info("========delete=============={}",redisTemplate.delete("string1"));
+    }
+
+    /**
+     * redisTemplate.opsForValue();//操作String
+     **/
     public void testRedisStringCommand(){
         BondsBean bondsBean1 = new BondsBean();
         bondsBean1.setBondId(4);
@@ -96,21 +115,15 @@ public class BondsService {
         redisTemplate.opsForValue().set(redisKey,redisValue);
         log.info("========get获取value========={}",redisTemplate.opsForValue().get(redisKey));
         log.info("========getAndSet==========={}",redisTemplate.opsForValue().getAndSet("string1","value1"));
-        log.info("========expire=============={}",redisTemplate.expire("string1",3L, TimeUnit.MILLISECONDS));
-        log.info("========persist============={}",redisTemplate.persist("string1"));
-        log.info("========hasKey=============={}",redisTemplate.hasKey("string1"));
-        log.info("========getExpire==========={}",redisTemplate.getExpire("string1"));
-        log.info("========setIfAbsent========={}",redisTemplate.opsForValue().setIfAbsent("string1","value2"));
+        log.info("========setIfAbsent========={}",redisTemplate.opsForValue().setIfAbsent("wwwwwwwwwww","value2"));
         log.info("========setIfPresent========{}",redisTemplate.opsForValue().setIfPresent("string3","value3"));
         log.info("========get================={}",redisTemplate.opsForValue().get("string3"));
         redisTemplate.opsForValue().set("score","1000");
-        log.info("========type================{}",redisTemplate.type("score"));
         log.info("========increment==========={}",redisTemplate.opsForValue().increment("score",100));
         log.info("========score==============={}",redisTemplate.opsForValue().get("score"));
         log.info("========score==============={}",redisTemplate.opsForValue().decrement("score"));
         log.info("========score==============={}",redisTemplate.opsForValue().decrement("score"),200);
-        log.info("========get============={}",redisTemplate.opsForValue().get("string1"));
-        log.info("========delete=============={}",redisTemplate.delete("string1"));
+        log.info("========get================={}",redisTemplate.opsForValue().get("string1"));
         log.info("========get================={}",redisTemplate.opsForValue().get("string1"));
         redisTemplate.opsForValue().set("mystr","mystrvalue");
         log.info("========append=============={}",redisTemplate.opsForValue().append("mystr1","mystrvalue1"));
@@ -125,17 +138,53 @@ public class BondsService {
     
     public void testRedisListCommand(){
         List<String> list1 =  new ArrayList();
-        list1.add("1");
-        list1.add("2");
-        list1.add("3");
-        redisTemplate.opsForList().leftPush("listkey1", JSONObject.toJSONString(list1));
-        redisTemplate.opsForList().rightPush("listkey2","33333333");
-        redisTemplate.opsForList().rightPopAndLeftPush("listkey2","3333333333");
-        String[] strings =  new String[]{"asd","fgh","jkl"};
-        redisTemplate.opsForList().rightPushAll("listkey2",strings);
-        log.info("======================={}", redisTemplate.opsForList().range("listkey2",0,-1));
-        log.info("======================={}", redisTemplate.opsForList().leftPop("listkey2"));
+        list1.add("1111");
+        list1.add("2222");
+        list1.add("3333");
+        list1.add("4444");
+        log.info("=======leftPush============={}", redisTemplate.opsForList().leftPush("listkey1", JSONObject.toJSONString(list1)));
+        log.info("=======range1==============={}", redisTemplate.opsForList().range("listkey1",0,-1));
+        log.info("=======rightPush============{}", redisTemplate.opsForList().rightPush("listkey2","qqqq"));
+        log.info("=======rightPush============{}", redisTemplate.opsForList().rightPush("listkey2","wwww"));
+        log.info("=======rightPush============{}", redisTemplate.opsForList().rightPush("listkey2","eeee"));
+        log.info("=======range2==============={}", redisTemplate.opsForList().range("listkey2",0,-1));
+        log.info("=======leftPop=============={}", redisTemplate.opsForList().leftPop("listkey1"));
+        log.info("=======leftPush============={}", redisTemplate.opsForList().leftPush("listkey1","aaaa"));
+        log.info("=======leftPush============={}", redisTemplate.opsForList().leftPush("listkey1","  bbbb"));
+        log.info("=======leftPush============={}", redisTemplate.opsForList().leftPush("listkey1","cccc"));
+        log.info("=======leftPush============={}", redisTemplate.opsForList().leftPush("listkey1","  dddd"));
+        log.info("=======leftPush============={}", redisTemplate.opsForList().leftPush("listkey1","ffff"));
+        log.info("=======range3==============={}", redisTemplate.opsForList().range("listkey1",0,-1));
+        //截取第1个到第4个元素
+        redisTemplate.opsForList().trim("listkey1",0,3);
+        log.info("=======range4==============={}", redisTemplate.opsForList().range("listkey1",0,-1));
+        log.info("=======leftPop=============={}", redisTemplate.opsForList().leftPop("listkey1"));
+        log.info("=======range5==============={}", redisTemplate.opsForList().range("listkey1",0,-1));
+        log.info("=======rightPop============={}", redisTemplate.opsForList().rightPop("listkey1"));
+        log.info("=======range6==============={}", redisTemplate.opsForList().range("listkey1",0,-1));
+        log.info("=======size================={}", redisTemplate.opsForList().size("listkey1"));
+        log.info("=======index================{}", redisTemplate.opsForList().index("listkey1",1));
+        log.info("=======range7==============={}", redisTemplate.opsForList().range("listkey1",0,-1));
+        log.info("=======remove==============={}", redisTemplate.opsForList().remove("listkey1",0,"cccc"));
+        log.info("=======range8==============={}", redisTemplate.opsForList().range("listkey1",0,-1));
+        //从listkey2（[qqqq, wwww, eeee]）取出右边第一个给元素，放到listkey3里
+        log.info("=======rightPopAndLeftPush=={}",  redisTemplate.opsForList().rightPopAndLeftPush("listkey2","listkey3"));
+        //[qqqq, wwww]
+        log.info("=======range9==============={}", redisTemplate.opsForList().range("listkey2",0,-1));
+        //[eeee]
+        log.info("=======range10==============={}", redisTemplate.opsForList().range("listkey3",0,-1));
+        //如果listkey3存在的话，将下标为0的改为”1111“
+        redisTemplate.opsForList().set("listkey3",0,"1111");
+        //如果listkey3存在的话，将下标为0的改为”qqqq“
+        redisTemplate.opsForList().set("listkey3",0,"qqqq");
+        log.info("=======range11=============={}", redisTemplate.opsForList().range("listkey3",0,-1));
+        //如果listkey3存在的话，在左边添加”6666“
+        log.info("=======leftPushIfPresent===={}", redisTemplate.opsForList().leftPushIfPresent("listkey3","6666"));
+        log.info("=======range12=============={}", redisTemplate.opsForList().range("listkey3",0,-1));
 
+        String[] strings =  new String[]{"asd","fgh","jkl"};
+        log.info("=======rightPushAll========={}",redisTemplate.opsForList().rightPushAll("listkey2",strings));
+        log.info("=======range13=============={}", redisTemplate.opsForList().range("listkey2",0,-1));
     }
     /**
      * redisTemplate.opsForHash();//操作hash
