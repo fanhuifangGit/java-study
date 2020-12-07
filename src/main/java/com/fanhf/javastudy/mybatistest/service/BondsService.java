@@ -206,7 +206,6 @@ public class BondsService {
     /**
      * redisTemplate.opsForSet();//操作set
      **/
-    
     public void testRedisSetCommand(){
           String[] strings =  new  String[]{"aaaa","bbbb","cccc","dddd"};
         redisTemplate.opsForSet().add("setKey",strings);
