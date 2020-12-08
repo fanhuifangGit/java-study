@@ -39,7 +39,7 @@ public class CustomClassLoader extends  ClassLoader{
 
     public byte[] getClassFromCustomPath(){
        //从自定义路径加载指定类：细节略
-        //如果指定的字节码文件进行了加密，则需要在此方法中进行解密
+        //如果指定路径的字节码文件进行了加密，则需要在此方法中进行解密
        return  null;
     }
 }   

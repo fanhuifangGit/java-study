@@ -1,8 +1,10 @@
 package com.fanhf.javastudy;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -77,10 +79,14 @@ public class IfNullTest {
      public void test6(){
 //        int i = 10/0;
 //        System.out.println(i);
-         boolean fals = Boolean.parseBoolean("true");
-         System.out.println(fals);
-         if(fals){
-             System.out.println("1111111111111");
-         }
+//         boolean fals = Boolean.parseBoolean("true");
+//         System.out.println(fals);
+//         if(fals){
+//             System.out.println("1111111111111");
+//         }
+         HashMap map = new HashMap();
+         map.put("security", "sss");
+         map.put("channelNo", "aaaa");
+        System.out.println(JSON.toJSONString(map));
      }
 }   
