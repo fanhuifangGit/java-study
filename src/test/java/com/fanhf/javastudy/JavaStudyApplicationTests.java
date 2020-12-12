@@ -1,13 +1,14 @@
 package com.fanhf.javastudy;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class JavaStudyApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
+        System.out.println("redis："+String.format("%s:%s", "activity", "bigfactory"));
     }
 
 }
