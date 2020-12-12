@@ -1,8 +1,16 @@
 package com.fanhf.javastudy;
 
+<<<<<<< HEAD
 import org.junit.Test;
 
 import java.util.ArrayList;
+=======
+import com.alibaba.fastjson.JSON;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
 import java.util.List;
 
 /**
@@ -77,10 +85,22 @@ public class IfNullTest {
      public void test6(){
 //        int i = 10/0;
 //        System.out.println(i);
+<<<<<<< HEAD
          boolean fals = Boolean.parseBoolean("true");
          System.out.println(fals);
          if(fals){
              System.out.println("1111111111111");
          }
+=======
+//         boolean fals = Boolean.parseBoolean("true");
+//         System.out.println(fals);
+//         if(fals){
+//             System.out.println("1111111111111");
+//         }
+         HashMap map = new HashMap();
+         map.put("security", "sss");
+         map.put("channelNo", "aaaa");
+        System.out.println(JSON.toJSONString(map));
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
      }
 }   
