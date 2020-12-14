@@ -47,6 +47,10 @@ public class BondsController {
     @PostMapping(value = "/redisDemo")
     @ApiOperation(value = "redis不同数据结构demo")
     public void getBondsRedis(@RequestBody String  type){
+<<<<<<< HEAD
+        bondsService.getBondsRedis(type);
+=======
          bondsService.getBondsRedis(type);
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     }
 }   

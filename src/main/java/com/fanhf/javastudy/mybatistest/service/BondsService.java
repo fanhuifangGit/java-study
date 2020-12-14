@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.RedisTemplate;
+<<<<<<< HEAD
+=======
 import org.springframework.data.redis.core.ScanOptions;
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,10 @@ public class BondsService {
     @Autowired
     private  RedisTemplate<String , String> redisTemplate;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     public List<BondsBean> getBondsList() {
         return bondsDao.getBondsList();
     }
@@ -50,10 +57,13 @@ public class BondsService {
 
     public void getBondsRedis(String type) {
         switch (Integer.parseInt(type)){
+<<<<<<< HEAD
+=======
             case 0:
                 log.info("==================Keys操作==========================");
                 testRedisKeysCommand();
                 break;
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
             case 1:
                 log.info("==================string操作==========================");
                 testRedisStringCommand();
@@ -78,6 +88,8 @@ public class BondsService {
         }
     }
 
+<<<<<<< HEAD
+=======
     /**
      * redisTemplate;//操作keys
      */
@@ -93,6 +105,7 @@ public class BondsService {
     /**
      * redisTemplate.opsForValue();//操作String
      **/
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     public void testRedisStringCommand(){
         BondsBean bondsBean1 = new BondsBean();
         bondsBean1.setBondId(4);
@@ -116,15 +129,32 @@ public class BondsService {
         redisTemplate.opsForValue().set(redisKey,redisValue);
         log.info("========get获取value========={}",redisTemplate.opsForValue().get(redisKey));
         log.info("========getAndSet==========={}",redisTemplate.opsForValue().getAndSet("string1","value1"));
+<<<<<<< HEAD
+        log.info("========expire=============={}",redisTemplate.expire("string1",3L, TimeUnit.MILLISECONDS));
+        log.info("========persist============={}",redisTemplate.persist("string1"));
+        log.info("========hasKey=============={}",redisTemplate.hasKey("string1"));
+        log.info("========getExpire==========={}",redisTemplate.getExpire("string1"));
+        log.info("========setIfAbsent========={}",redisTemplate.opsForValue().setIfAbsent("string1","value2"));
+        log.info("========setIfPresent========{}",redisTemplate.opsForValue().setIfPresent("string3","value3"));
+        log.info("========get================={}",redisTemplate.opsForValue().get("string3"));
+        redisTemplate.opsForValue().set("score","1000");
+        log.info("========type================{}",redisTemplate.type("score"));
+=======
         log.info("========setIfAbsent========={}",redisTemplate.opsForValue().setIfAbsent("wwwwwwwwwww","value2"));
         log.info("========setIfPresent========{}",redisTemplate.opsForValue().setIfPresent("string3","value3"));
         log.info("========get================={}",redisTemplate.opsForValue().get("string3"));
         redisTemplate.opsForValue().set("score","1000");
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
         log.info("========increment==========={}",redisTemplate.opsForValue().increment("score",100));
         log.info("========score==============={}",redisTemplate.opsForValue().get("score"));
         log.info("========score==============={}",redisTemplate.opsForValue().decrement("score"));
         log.info("========score==============={}",redisTemplate.opsForValue().decrement("score"),200);
+<<<<<<< HEAD
+        log.info("========get============={}",redisTemplate.opsForValue().get("string1"));
+        log.info("========delete=============={}",redisTemplate.delete("string1"));
+=======
         log.info("========get================={}",redisTemplate.opsForValue().get("string1"));
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
         log.info("========get================={}",redisTemplate.opsForValue().get("string1"));
         redisTemplate.opsForValue().set("mystr","mystrvalue");
         log.info("========append=============={}",redisTemplate.opsForValue().append("mystr1","mystrvalue1"));
@@ -139,6 +169,19 @@ public class BondsService {
     
     public void testRedisListCommand(){
         List<String> list1 =  new ArrayList();
+<<<<<<< HEAD
+        list1.add("1");
+        list1.add("2");
+        list1.add("3");
+        redisTemplate.opsForList().leftPush("listkey1", JSONObject.toJSONString(list1));
+        redisTemplate.opsForList().rightPush("listkey2","33333333");
+        redisTemplate.opsForList().rightPopAndLeftPush("listkey2","3333333333");
+        String[] strings =  new String[]{"asd","fgh","jkl"};
+        redisTemplate.opsForList().rightPushAll("listkey2",strings);
+        log.info("======================={}", redisTemplate.opsForList().range("listkey2",0,-1));
+        log.info("======================={}", redisTemplate.opsForList().leftPop("listkey2"));
+
+=======
         list1.add("1111");
         list1.add("2222");
         list1.add("3333");
@@ -186,12 +229,26 @@ public class BondsService {
         String[] strings =  new String[]{"asd","fgh","jkl"};
         log.info("=======rightPushAll========={}",redisTemplate.opsForList().rightPushAll("listkey2",strings));
         log.info("=======range13=============={}", redisTemplate.opsForList().range("listkey2",0,-1));
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     }
     /**
      * redisTemplate.opsForHash();//操作hash
      **/
     
     public void testRedisHashCommand(){
+<<<<<<< HEAD
+        redisTemplate.opsForHash().put("h1","h2","v1");
+        redisTemplate.opsForHash().put("redishash","name","tom");
+        Map<String, String> map =  new HashMap<>();
+        map.put("hash1","value1");
+        map.put("hash2","value2");
+        redisTemplate.opsForHash().putAll("hashMap",map);
+        log.info("========================={}",redisTemplate.opsForHash().get("redishash","name"));
+        log.info("========================={}",redisTemplate.opsForHash().get("hashMap","hash1"));
+        log.info("========keys============={}",redisTemplate.opsForHash().keys("hashMap"));
+        log.info("========size============={}",redisTemplate.opsForHash().size("hashMap"));
+        log.info("========entries=========={}",redisTemplate.opsForHash().entries("hashMap"));
+=======
         redisTemplate.opsForHash().put("hash1","h1k1","v1");
         redisTemplate.opsForHash().put("hash1","h1k2","v2");
         log.info("========entries============={}",redisTemplate.opsForHash().entries("hash1"));
@@ -213,10 +270,15 @@ public class BondsService {
         log.info("========keys================{}",redisTemplate.opsForHash().keys("hashMap"));
         log.info("========size================{}",redisTemplate.opsForHash().size("hashMap"));
         log.info("========size================{}",redisTemplate.opsForHash().hasKey("hincrby","number"));
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     }
     /**
      * redisTemplate.opsForSet();//操作set
      **/
+<<<<<<< HEAD
+    
+=======
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     public void testRedisSetCommand(){
           String[] strings =  new  String[]{"aaaa","bbbb","cccc","dddd"};
         redisTemplate.opsForSet().add("setKey",strings);
@@ -225,6 +287,24 @@ public class BondsService {
         redisTemplate.opsForSet().add("setKey3","hhhh");
         redisTemplate.opsForSet().add("setKey3","iiii");
         redisTemplate.opsForSet().add("setKey3","cccc");
+<<<<<<< HEAD
+
+        log.info("=========difference============{}", redisTemplate.opsForSet().difference("setKey2","setKey1"));
+        log.info("=========union================={}", redisTemplate.opsForSet().union("setKey2","setKey1"));
+        log.info("=========unionAndStore========={}", redisTemplate.opsForSet().unionAndStore("setKey2","setKey1","setKey1-setKey2-union"));
+        log.info("=========members==============={}", redisTemplate.opsForSet().members("setKey"));
+        log.info("=========isMember=============={}", redisTemplate.opsForSet().isMember("setKey","bbbb"));
+        log.info("=========opsForSet============={}", redisTemplate.opsForSet().size("setKey"));
+        log.info("=========pop==================={}", redisTemplate.opsForSet().pop("setKey1"));
+        log.info("=========members==============={}", redisTemplate.opsForSet().members("setKey2"));
+        log.info("=========members==============={}", redisTemplate.opsForSet().members("setKey3"));
+        log.info("=========remove================{}", redisTemplate.opsForSet().remove("setKey3","hhhhhhh"));
+        log.info("=========members==============={}", redisTemplate.opsForSet().members("setKey3"));
+        log.info("=========randomMember=========={}", redisTemplate.opsForSet().randomMember("setKey"));
+        log.info("=========members==============={}", redisTemplate.opsForSet().members("setKey"));
+        log.info("=========members==============={}", redisTemplate.opsForSet().intersectAndStore("setKey","setKey3","setKey-setKey3-intersect"));
+        log.info("=========members==============={}", redisTemplate.opsForSet().members("setKey-setKey3-intersect"));
+=======
         redisTemplate.opsForSet().add("setKey3","llll");
         redisTemplate.opsForSet().add("setKey3","aaaa");
 
@@ -248,6 +328,7 @@ public class BondsService {
         log.info("=========intersect============={}", redisTemplate.opsForSet().intersect("setKey","setKey3"));
         log.info("=========intersectAndStore====={}", redisTemplate.opsForSet().intersectAndStore("setKey","setKey3","setKey-setKey3-intersect"));
         log.info("=========members6=============={}", redisTemplate.opsForSet().members("setKey-setKey3-intersect"));
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     }
     /**
      * redisTemplate.opsForZSet();//操作有序set
@@ -268,9 +349,15 @@ public class BondsService {
         tuples.add(objectTypedTuple5);
         tuples.add(objectTypedTuple6);
 
+<<<<<<< HEAD
+        ZSetOperations.TypedTuple<String> tuples1 = new DefaultTypedTuple<String>("zset2-1",8.1);
+        ZSetOperations.TypedTuple<String> tuples2 = new DefaultTypedTuple<String>("zset2-2",8.2);
+        ZSetOperations.TypedTuple<String> tuples3 = new DefaultTypedTuple<String>("zset2-3",8.3);
+=======
         ZSetOperations.TypedTuple<String> tuples1 = new DefaultTypedTuple<String>("zset-1",8.1);
         ZSetOperations.TypedTuple<String> tuples2 = new DefaultTypedTuple<String>("zset-2",8.2);
         ZSetOperations.TypedTuple<String> tuples3 = new DefaultTypedTuple<String>("zset-3",8.3);
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
         Set<ZSetOperations.TypedTuple<String>> stuples1 = new HashSet<ZSetOperations.TypedTuple<String>>();
         stuples1.add(objectTypedTuple1);
         stuples1.add(objectTypedTuple2);
@@ -278,6 +365,21 @@ public class BondsService {
 
         log.info("======add=zset1============{}",redisTemplate.opsForZSet().add("zset1",tuples));
         log.info("======add=zset2============{}",redisTemplate.opsForZSet().add("zset2",stuples1));
+<<<<<<< HEAD
+        log.info("======range================{}",redisTemplate.opsForZSet().range("zset1",0,-1));
+        log.info("======zCard================{}",redisTemplate.opsForZSet().zCard("zset1"));
+        log.info("======incrementScore======={}",redisTemplate.opsForZSet().incrementScore("zset1","zset-1",1.1));
+        log.info("======intersectAndStore===={}",redisTemplate.opsForZSet().intersectAndStore("zset1","zset2", "zset1-zset2-intersect"));
+        log.info("======range================{}",redisTemplate.opsForZSet().range("zset1",0,-1));
+        log.info("======rangeByScore========={}",redisTemplate.opsForZSet().rangeByScore("zset1",0,5));
+        log.info("======reverseRange========={}",redisTemplate.opsForZSet().reverseRange("zset1",0,-1));
+        log.info("======reverseRangeByScore=={}",redisTemplate.opsForZSet().reverseRangeByScore("zset1",0,-1));
+        log.info("======count================{}",redisTemplate.opsForZSet().count("zset1",0,-1));
+        log.info("======rank================={}",redisTemplate.opsForZSet().rank("zset1","zset-1"));
+        log.info("======size================={}",redisTemplate.opsForZSet().size("zset1"));
+
+
+=======
         log.info("======range1==============={}",redisTemplate.opsForZSet().range("zset1",0,-1));
         log.info("======zCard================{}",redisTemplate.opsForZSet().zCard("zset1"));
         log.info("======incrementScore======={}",redisTemplate.opsForZSet().incrementScore("zset1","zset-1",1.1));
@@ -301,6 +403,7 @@ public class BondsService {
         log.info("======range7==============={}",redisTemplate.opsForZSet().range("zset1",0,-1));
         log.info("======size================={}",redisTemplate.opsForZSet().size("zset1"));
         log.info("======zCard================{}",redisTemplate.opsForZSet().zCard("zset1"));
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     }
     public  static long getNowSeconds(){
         DateTimeFormatter df = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS);

@@ -1,9 +1,26 @@
 package com.fanhf.javastudy.classloader;
 
+<<<<<<< HEAD
+/**
+ * @author fanhf
+ * @Description TODO
+ * @date 2020-11-19 16:13
+ */
+=======
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
 public class ClassLoaderTest {
     public static void main(String[] args){
         try {
             ClassLoader classLoader = Class.forName("java.lang.String").getClassLoader();
+<<<<<<< HEAD
+            System.out.println(classLoader);
+
+            ClassLoader classLoader1 = Thread.currentThread().getContextClassLoader();
+            System.out.println(classLoader1);
+
+            ClassLoader classLoader2 =  ClassLoader.getSystemClassLoader();
+            System.out.println(classLoader2);
+=======
             System.out.println("classLoader:"+classLoader);
 
             ClassLoader classLoader1 = Thread.currentThread().getContextClassLoader();
@@ -32,9 +49,14 @@ public class ClassLoaderTest {
             //自定义的是引用类加载器：AppClassLoader
             ClassLoader classLoader3 = ClassLoaderTest.class.getClassLoader();
             System.out.println("classLoader3:"+classLoader3);
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> c588229b83e2dce89d2edfd8c1eb65fff1e71ff8
     }
 }   
