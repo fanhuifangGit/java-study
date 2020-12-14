@@ -18,24 +18,33 @@
 
         <!--配置输出sql语句-->
         <!-- mybatis loggers -->
-        <logger name="com.ibatis" level="DEBUG" />
-        <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />
-        <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
-        <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />
-        <logger name="com.zaxxer.hikari.HikariDataSource " level="DEBUG" />
-        <!-- sql loggers -->
-        <logger name="java.sql.Connection" level="DEBUG"  additivity="true"/>
-        <logger name="java.sql.Statement" level="DEBUG" additivity="true" />
-        <logger name="java.sql.PreparedStatement" level="=debug,stdout"  additivity="true"/>
-        <logger name="java.sql.ResultSet" level="DEBUG"  additivity="true"/>
+
+        <logger name="com.mybatis" additivity="true"><level value="DEBUG" /></logger>
+        <logger name="java.sql.ResultSet" additivity="true"><level value="info" /></logger>
+        <logger name="org.apache" additivity="true"><level value="info" /></logger>
+        <logger name="java.sql.Connection" additivity="true"><level value="debug" /></logger>
+        <logger name="java.sql.Statement" additivity="true"><level value="debug" /></logger>
+        <logger name="java.sql.PreparedStatement" additivity="true"><level value="debug" /></logger>
+
+<!--        <logger name="com.ibatis" level="DEBUG" />-->
+<!--        <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />-->
+<!--        <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />-->
+<!--        <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />-->
+<!--        <logger name="com.zaxxer.hikari.HikariDataSource " level="DEBUG" />-->
+<!--        &lt;!&ndash; sql loggers &ndash;&gt;-->
+<!--        <logger name="java.sql.Connection" level="DEBUG"  additivity="true"/>-->
+<!--        <logger name="java.sql.Statement" level="DEBUG" additivity="true" />-->
+<!--        <logger name="java.sql.PreparedStatement" level="=debug,stdout"  additivity="true"/>-->
+<!--        <logger name="java.sql.ResultSet" level="DEBUG"  additivity="true"/>-->
         <!-- 将业务dao接口所在的包填写进去,并用在控制台和文件中输出 -->
-        <logger name="com.fanhf.javastudy.mybatistest.dao"  level="TRACE" additivity="false">
+        <logger name="com.fanhf.javastudy.mybatistest"  level="TRACE" additivity="false">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="STDOUT" />
 <!--            <AppenderRef ref="MyFile"/>-->
         </logger>
 
         <!-- 这个会打印出所有的info及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <RollingFile name="RollingFileInfo" fileName="${baseDir}/seq_all.log"
+        <RollingFile name="RollingFileInfo" fileName="${baseDir}/javastudy.log"
                      filePattern="${baseDir}/$${date:yyyy-MM}/all-%d{yyyy-MM-dd}-%i.log">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -67,6 +76,10 @@
                 <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
         </RollingFile>
+        <Async name="ASYNC">
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="STDOUT"/>
+        </Async>
     </appenders>
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
