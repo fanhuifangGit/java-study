@@ -32,7 +32,7 @@ public class HeapSpecialInitial {
 
         System.out.println("-Xms:" + initialMemeory + "M");
         System.out.println("-Xms:" + initialMemeory + "M");
-        System.out.println("系统内存大小为：" + maxMemory * 64.0 / 1024 + "G");
-        System.out.println("系统内存大小为" + maxMemory * 4.0 / 1024 + "G");
+        System.out.println("系统初始化内存大小为：" + maxMemory * 64.0 / 1024 + "G");
+        System.out.println("系统最大内存大小为：" + maxMemory * 4.0 / 1024 + "G");
     }
 }   

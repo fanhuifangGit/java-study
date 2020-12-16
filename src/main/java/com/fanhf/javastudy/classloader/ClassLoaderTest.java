@@ -41,7 +41,7 @@ public class ClassLoaderTest {
             ClassLoader cl = String.class.getClassLoader();
             System.out.println("classLoader2:"+cl);
 
-            //自定义的是引用类加载器：AppClassLoader
+            //自定义的是引用类加载器：AppClassLoader,appoint的缩写
             ClassLoader classLoader3 = ClassLoaderTest.class.getClassLoader();
             System.out.println("classLoader3:"+classLoader3);
 
