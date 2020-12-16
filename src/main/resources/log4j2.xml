@@ -36,7 +36,7 @@
 <!--        <logger name="java.sql.Statement" level="DEBUG" additivity="true" />-->
 <!--        <logger name="java.sql.PreparedStatement" level="=debug,stdout"  additivity="true"/>-->
 <!--        <logger name="java.sql.ResultSet" level="DEBUG"  additivity="true"/>-->
-        <!-- 将业务dao接口所在的包填写进去,并用在控制台和文件中输出 -->
+        <!-- 将业务dao接口所在的包填写进去,并用在控制台和文件中输出 ,additivity="false 是为了让Logger不继承父类的Logger（rootLogger）-->
         <logger name="com.fanhf.javastudy.mybatistest"  level="TRACE" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="STDOUT" />
@@ -76,10 +76,11 @@
                 <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
         </RollingFile>
-        <Async name="ASYNC">
+        <!--由于默认日志位置信息并没有被传给异步 Logger I/O 线程，因此这里的 includeLocation 须要设置为 true-->
+        <AsyncLogger name="ASYNC" includeLocation ="true">
             <AppenderRef ref="RollingFile"/>
             <AppenderRef ref="STDOUT"/>
-        </Async>
+        </AsyncLogger>
     </appenders>
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
