@@ -1,8 +1,12 @@
+package com.fanhf.javastudy.methodSpace;
+
 /**
+ * @author fanhf
  * @Description TODO
- *
- * @author    fanhf
- * @date      2020-12-17 14:45
+ * @date 2020-12-17 14:45
  */
 public class CustomerTest {
-}   
+    public static void main(String[] args) {
+        Customer cust = new Customer();
+    }
+}
