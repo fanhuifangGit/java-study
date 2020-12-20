@@ -125,6 +125,7 @@ public class BondsService {
         redisTemplate.opsForValue().set("score","1000");
         log.info("========type================{}",redisTemplate.type("score"));
         log.info("========setIfAbsent========={}",redisTemplate.opsForValue().setIfAbsent("wwwwwwwwwww","value2"));
+        log.info("========setIfPresent========{}",redisTemplate.opsForValue().setIfPresent("string3","value3"));
         log.info("========get================={}",redisTemplate.opsForValue().get("string3"));
         redisTemplate.opsForValue().set("score","1000");
         log.info("========increment==========={}",redisTemplate.opsForValue().increment("score",100));
@@ -336,7 +337,6 @@ public class BondsService {
         log.info("======count================{}",redisTemplate.opsForZSet().count("zset1",0,-1));
         log.info("======rank================={}",redisTemplate.opsForZSet().rank("zset1","zset-1"));
         log.info("======size================={}",redisTemplate.opsForZSet().size("zset1"));
-
 
         log.info("======range1==============={}",redisTemplate.opsForZSet().range("zset1",0,-1));
         log.info("======zCard================{}",redisTemplate.opsForZSet().zCard("zset1"));

@@ -18,6 +18,10 @@ public class ClassLoaderTest {
             System.out.println(classLoader2);
             System.out.println("classLoader:"+classLoader);
 
+            ClassLoader cl1 = Thread.currentThread().getContextClassLoader();
+            System.out.println("classLoader1:"+cl1);
+
+            //系统类加载器
             ClassLoader systemClassLoader2 =  ClassLoader.getSystemClassLoader();
             //AppClassLoader
             System.out.println("systemClassLoader2:"+systemClassLoader2);
@@ -34,15 +38,16 @@ public class ClassLoaderTest {
 
             //String类使用引导类加载器进行加载 ---> .Java的核心类库都是使用引导类加载器进行加载的
             //原因是: bootStrap是用C/C++语言编写的，而应用类加载器和扩展类加载器是java写的，所以无法获取到
-            ClassLoader classLoader24 = String.class.getClassLoader();
-            System.out.println("classLoader2:"+classLoader24);
+            ClassLoader cl = String.class.getClassLoader();
+            System.out.println("classLoader2:"+cl);
 
-            //自定义的是引用类加载器：AppClassLoader
+            //自定义的是引用类加载器：AppClassLoader,appoint的缩写
             ClassLoader classLoader3 = ClassLoaderTest.class.getClassLoader();
             System.out.println("classLoader3:"+classLoader3);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
-}   
+}
