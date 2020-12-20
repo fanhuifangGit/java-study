@@ -3,7 +3,6 @@ package com.fanhf.javastudy;
 import com.fanhf.javastudy.mybatistest.bean.BondsBean;
 import com.fanhf.javastudy.mybatistest.bean.CommonBean;
 import org.junit.Test;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.util.ArrayList;
 import java.util.List;
