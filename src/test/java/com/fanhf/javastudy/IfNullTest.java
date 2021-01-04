@@ -3,7 +3,6 @@ package com.fanhf.javastudy;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
